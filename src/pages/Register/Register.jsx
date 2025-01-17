@@ -4,9 +4,10 @@ import registerAnimation from '../../assets/register.json';
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { imageUpload } from '../../components/api/utils';
 
 const Register = () => {
-  const { creatUser, signInWithGoogle } = useAuth();
+  const { creatUser, signInWithGoogle, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || '/';
@@ -15,14 +16,26 @@ const Register = () => {
     const form = e.target;
     const email = form.email.value;
     const name = form.name.value;
-    const photo = form.photo.value;
+    const image = form.image.files[0];
+
+    //1. send image data to imgbb
+    const photoURL = await imageUpload(image);
     const password = form.password.value;
-    console.log({ email, password, name, photo });
-    creatUser(email, password).then(res => {
-      const loggedUser = res.usre;
-      console.log(loggedUser);
-      toast.success('Register Successfull !');
-    });
+    console.log({ email, password, name, photoURL });
+    try {
+      //2. User Registration
+      const result = await creatUser(email, password);
+
+      //3. Save username & profile photo
+      await updateUserProfile(name, photoURL);
+      console.log(result);
+
+      //  navigate('/');
+      toast.success('Signup Successful');
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
     navigate(from, { replace: true });
   };
   const handleGoogleSignIn = async () => {
@@ -76,7 +89,7 @@ const Register = () => {
                 required
                 type="file"
                 id="image"
-                name="photo"
+                name="image"
                 accept="image/*"
               />
             </div>

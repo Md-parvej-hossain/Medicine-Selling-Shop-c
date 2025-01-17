@@ -3,6 +3,8 @@ import logo from '../../assets/logo.jpg';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import Language from '../../components/Language';
+import { FaUserAlt } from 'react-icons/fa';
+
 const Nvbar = () => {
   const { user, logout } = useAuth();
   const handaleLogout = () => {
@@ -17,7 +19,7 @@ const Nvbar = () => {
         <NavLink to={'/'}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={'/s'}>Shop</NavLink>
+        <NavLink to={'/shop'}>Shop</NavLink>
       </li>
       <li>
         <NavLink to={'/j'}>Join Us</NavLink>
@@ -138,7 +140,9 @@ const Nvbar = () => {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      src={
+                        user && user.photoURL ? user.photoURL : <FaUserAlt />
+                      }
                     />
                   </div>
                 </div>

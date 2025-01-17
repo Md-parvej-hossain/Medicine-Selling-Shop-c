@@ -2,6 +2,7 @@
 // import { useParams } from 'react-router-dom';
 import { GrCheckboxSelected } from 'react-icons/gr';
 import { IoMdEye } from 'react-icons/io';
+import { toast } from 'react-hot-toast';
 
 const CategoreTab = () => {
   // const { id } = useParams();
@@ -14,6 +15,9 @@ const CategoreTab = () => {
   //     .catch(error => console.error('Error fetching data:', error));
   // }, [id]);
 
+  const handaleAddToCart = () => {
+    toast.success('Item Add To Cart Successfull !');
+  };
   return (
     <div className="py-24 px-10">
       <h1 className="text-2xl font-bold mb-4">Medicines</h1>
@@ -61,7 +65,12 @@ const CategoreTab = () => {
                     </div>
                   </dialog>
                 </div>
-                <GrCheckboxSelected className="size-7 " />
+                <div
+                  onClick={handaleAddToCart}
+                  className="bg-green-500 hover:text-white p-1"
+                >
+                  <GrCheckboxSelected className="size-7" />
+                </div>
               </div>
             </td>
           </tr>

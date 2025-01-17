@@ -20,14 +20,18 @@ const Sidebare = () => {
             </Link>
           </li>
           <li>
-            <a href="#manage-users" className="hover:bg-blue-700">
+            <Link to={'manageusrt'} className="hover:bg-blue-700">
               Manage Users
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#manage-category" className="hover:bg-blue-700">
+            <Link
+              to={'manageCategore'}
+              href="#manage-category"
+              className="hover:bg-blue-700"
+            >
               Manage Category
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#payment-management" className="hover:bg-blue-700">
@@ -62,9 +66,7 @@ const Sidebare = () => {
         </ul>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Navbar */}
         <div className="flex items-center justify-between bg-blue-900 text-white px-4 py-3 lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
