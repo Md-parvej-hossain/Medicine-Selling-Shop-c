@@ -18,7 +18,7 @@ const CategorySection = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
       {items.map(iten => (
-        <CatagoreCart1 key={iten.id} iten={iten} />
+        <CatagoreCart1 key={iten.id} item={iten} />
       ))}
     </div>
   );

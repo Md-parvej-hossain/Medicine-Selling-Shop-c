@@ -8,7 +8,7 @@ import useAxous from './../../hooks/useAxous';
 
 const Login = () => {
   const location = useLocation();
-  const from = location?.state || '/';
+  const from = location?.state?.from?.pathname || '/';
   const navigate = useNavigate();
   const axiosePublic = useAxous();
   const { signIn, signInWithGoogle } = useAuth();

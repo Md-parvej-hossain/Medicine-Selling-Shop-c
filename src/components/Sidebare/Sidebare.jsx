@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink,  } from 'react-router-dom';
 
 const Sidebare = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,23 +15,23 @@ const Sidebare = () => {
         <div className="p-6 text-lg font-bold mt-50">Dashboard</div>
         <ul className="menu p-4 space-y-2">
           <li>
-            <Link to={'/'} href="#manage-users" className="hover:bg-blue-700">
+            <NavLink to={'/'} href="#manage-users" className="hover:bg-blue-700">
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={'manageusrt'} className="hover:bg-blue-700">
+            <NavLink to={'manageusrt'} className="hover:bg-blue-700">
               Manage Users
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to={'manageCategore'}
               href="#manage-category"
               className="hover:bg-blue-700"
             >
               Manage Category
-            </Link>
+            </NavLink>
           </li>
           <li>
             <a href="#payment-management" className="hover:bg-blue-700">
@@ -49,22 +49,22 @@ const Sidebare = () => {
             </a>
           </li>
           <li>
-            <Link
+            <NavLink
               to="manageMedicin"
               href="#manage-medicines"
               className="hover:bg-blue-700"
             >
               Manage Medicines
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="addmedicen"
               href="#manage-medicines"
               className="hover:bg-blue-700"
             >
               Add Medicines
-            </Link>
+            </NavLink>
           </li>
           <li>
             <a href="#payment-history" className="hover:bg-blue-700">

@@ -1,40 +1,73 @@
 // ShopPage.jsx
 import { IoMdEye } from 'react-icons/io';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GrCheckboxSelected } from 'react-icons/gr';
 import toast from 'react-hot-toast';
-
-const medicines = [
-  {
-    id: 1,
-    name: 'Paracetamol',
-    type: 'Tablet',
-    price: '$5',
-    description: 'Used for pain relief and fever.',
-    image: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 2,
-    name: 'Ibuprofen',
-    type: 'Capsule',
-    price: '$8',
-    description: 'Used for reducing inflammation and pain.',
-    image: 'https://via.placeholder.com/150',
-  },
-  // Add more medicine data as needed
-];
+import useAxous from '../../hooks/useAxous';
+import Swal from 'sweetalert2';
+import useCart from '../../hooks/useCart';
+import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useNavigate } from 'react-router-dom';
 
 const Shop = () => {
   const [selectedMedicine, setSelectedMedicine] = useState(null);
-  const [cart, setCart] = useState([]);
+
+  const { user } = useAuth();
+  const [, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
+
+  const navigate = useNavigate();
+  const [items, setItems] = useState([]);
+  const axiosPulic = useAxous();
+  useEffect(() => {
+    userData();
+  }, []);
+  const userData = async () => {
+    await axiosPulic.get('/medicen').then(res => {
+      setItems(res.data);
+    });
+  };
+  console.log(items);
 
   const handleViewDetails = medicine => {
     setSelectedMedicine(medicine);
   };
 
-  const handleAddToCart = medicine => {
-    setCart(prevCart => [...prevCart, medicine]);
-    toast.success('Item Add To Cart Successfull !');
+  const handaleAddToCart = item => {
+    if (user && user?.email) {
+      const cartItem = {
+        caetId: item._id,
+        email: user.email,
+        name: user.displayName,
+        itemName: item.madicenName,
+        price: parseFloat(item.price),
+        quantity: parseFloat(item.quantity),
+        img: item.img,
+      };
+      axiosSecure.post('/cart', cartItem).then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success('Add to cart Success !');
+        }
+      });
+      refetch();
+    } else {
+      Swal.fire({
+        title: 'You are not Log In',
+        text: 'Please login to the cart ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Login !',
+      }).then(result => {
+        if (result.isConfirmed) {
+          //send the user
+          navigate('/login', { state: { from: location } });
+        }
+      });
+    }
   };
 
   return (
@@ -47,19 +80,28 @@ const Shop = () => {
           <thead>
             <tr>
               <th>#</th>
+              <th>Imags</th>
               <th>Name</th>
-              <th>Type</th>
+              <th>Category</th>
               <th>Price</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {medicines.map((medicine, index) => (
+            {items.map((medicine, index) => (
               <tr key={medicine.id}>
                 <td>{index + 1}</td>
-                <td>{medicine.name}</td>
-                <td>{medicine.type}</td>
-                <td>{medicine.price}</td>
+                <td>
+                  <img
+                    height={'50px'}
+                    width={'50px'}
+                    src={medicine.img}
+                    alt=""
+                  />
+                </td>
+                <td>{medicine.madicenName}</td>
+                <td>{medicine.category}</td>
+                <td>${medicine.price}</td>
                 <td>
                   <div>
                     <button
@@ -70,7 +112,7 @@ const Shop = () => {
                     </button>
                     <button
                       className="btn btn-success btn-sm"
-                      onClick={() => handleAddToCart(medicine)}
+                      onClick={() => handaleAddToCart(medicine)}
                     >
                       <GrCheckboxSelected />
                     </button>
@@ -92,17 +134,22 @@ const Shop = () => {
             >
               ✕
             </button>
-            <h2 className="text-lg font-bold mb-4">{selectedMedicine.name}</h2>
+            <h2 className="text-lg font-bold mb-4">
+              {selectedMedicine.madicenName}
+            </h2>
             <img
-              src={selectedMedicine.image}
+              src={selectedMedicine.img}
               alt={selectedMedicine.name}
               className="w-32 h-32 object-cover mb-4 mx-auto"
             />
             <p>
-              <strong>Type:</strong> {selectedMedicine.type}
+              <strong>Type:</strong> {selectedMedicine.category}
             </p>
             <p>
-              <strong>Price:</strong> {selectedMedicine.price}
+              <strong>Price:</strong>${selectedMedicine.price}
+            </p>
+            <p>
+              <strong>Quentity :</strong> {selectedMedicine.quantity}
             </p>
             <p>
               <strong>Description:</strong> {selectedMedicine.description}

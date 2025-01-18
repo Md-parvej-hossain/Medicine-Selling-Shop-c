@@ -17,8 +17,9 @@ const AddMedsin = () => {
     const madicenName = form.name.value;
     const category = form.category.value;
     const description = form.description.value;
-    const price = form.price.value;
-    const quantity = form.quantity.value;
+    const price = parseFloat(form.price.value);
+    const quantity = parseFloat(form.quantity.value);
+    console.log(price,quantity);
     const seller = {
       name: user?.displayName,
       image: user?.photoURL,
@@ -38,7 +39,7 @@ const AddMedsin = () => {
       console.log(res.data);
       toast.success('Medicine added successfully');
     });
-    navigate('manageMedicin');
+    navigate('/dashbors/manageMedicin');
   };
 
   return (
@@ -70,12 +71,12 @@ const AddMedsin = () => {
                 className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                 name="category"
               >
-                <option value="Indoor">Tablet</option>
-                <option value="Outdoor">Capsul</option>
-                <option value="Succulent">Surup</option>
-                <option value="Flowering">Injection</option>
-                <option value="Flowering">Ointment</option>
-                <option value="Flowering">Drops</option>
+                <option value="tablet">tablet</option>
+                <option value="capsul">capsul</option>
+                <option value="surup">surup</option>
+                <option value="injection">injection</option>
+                <option value="ointment">ointment</option>
+                <option value="drops">drops</option>
               </select>
             </div>
             {/* Description */}
