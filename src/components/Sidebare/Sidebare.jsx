@@ -49,9 +49,22 @@ const Sidebare = () => {
             </a>
           </li>
           <li>
-            <a href="#manage-medicines" className="hover:bg-blue-700">
+            <Link
+              to="manageMedicin"
+              href="#manage-medicines"
+              className="hover:bg-blue-700"
+            >
               Manage Medicines
-            </a>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="addmedicen"
+              href="#manage-medicines"
+              className="hover:bg-blue-700"
+            >
+              Add Medicines
+            </Link>
           </li>
           <li>
             <a href="#payment-history" className="hover:bg-blue-700">

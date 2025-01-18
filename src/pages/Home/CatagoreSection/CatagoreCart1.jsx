@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
-const CatagoreCart = () => {
+const CatagoreCart1 = () => {
+
   return (
-    <Link to={'/category'}>
+    <Link to={`/category`}>
       <div className="card bg-base-100  shadow-xl">
         <figure className="px-10 pt-10">
           <img
@@ -12,7 +13,7 @@ const CatagoreCart = () => {
           />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">Shoes!</h2>
+          <h2 className="card-title">catagore 1</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions">
             <button className="btn btn-primary">Buy Now</button>
@@ -23,4 +24,4 @@ const CatagoreCart = () => {
   );
 };
 
-export default CatagoreCart;
+export default CatagoreCart1;

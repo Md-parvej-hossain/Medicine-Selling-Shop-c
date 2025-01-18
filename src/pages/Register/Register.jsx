@@ -5,9 +5,11 @@ import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { imageUpload } from '../../components/api/utils';
+import useAxous from '../../hooks/useAxous';
 
 const Register = () => {
   const { creatUser, signInWithGoogle, updateUserProfile } = useAuth();
+  const axiosePublic = useAxous();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || '/';
@@ -21,33 +23,37 @@ const Register = () => {
     //1. send image data to imgbb
     const photoURL = await imageUpload(image);
     const password = form.password.value;
-    console.log({ email, password, name, photoURL });
-    try {
-      //2. User Registration
-      const result = await creatUser(email, password);
+    creatUser(email, password).then(result => {
+      console.log(result.user);
+      updateUserProfile(name, photoURL).then(() => {
+        const userInfo = {
+          name: name,
+          email: email,
+          image: photoURL,
+        };
 
-      //3. Save username & profile photo
-      await updateUserProfile(name, photoURL);
-      console.log(result);
-
-      //  navigate('/');
-      toast.success('Signup Successful');
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
-    navigate(from, { replace: true });
+        axiosePublic.post('/users', userInfo).then(res => {
+          if (res.data.insertedId) {
+            toast.success('Signup Successful');
+          }
+        });
+      });
+      navigate(from, { replace: true });
+    });
   };
   const handleGoogleSignIn = async () => {
-    try {
-      //User Registration using google
-      await signInWithGoogle();
-      navigate(from, { replace: true });
-      toast.success('Login Successful');
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
+    signInWithGoogle().then(result => {
+      console.log(result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+        image: result.user?.photoURL,
+      };
+      axiosePublic.post('/users', userInfo).then(res => {
+        console.log(res.data);
+        navigate(from, { replace: true });
+      });
+    });
   };
   return (
     <div className="grid lg:grid-cols-2 md:mx-20">

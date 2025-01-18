@@ -4,24 +4,28 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import registerAnimationData from '../../assets/AnimationRegister.json';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxous from './../../hooks/useAxous';
 
 const Login = () => {
   const location = useLocation();
   const from = location?.state || '/';
   const navigate = useNavigate();
-
+  const axiosePublic = useAxous();
   const { signIn, signInWithGoogle } = useAuth();
   // Google Signin
-  const handleGoogleSignIn = async () => {
-    try {
-      //User Registration using google
-      await signInWithGoogle();
-      navigate(from, { replace: true });
-      toast.success('Login Successful');
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then(result => {
+      console.log(result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+        image: result.user?.photoURL,
+      };
+      axiosePublic.post('/users', userInfo).then(res => {
+        console.log(res.data);
+        navigate(from, { replace: true });
+      });
+    });
   };
 
   // Email Password Signin

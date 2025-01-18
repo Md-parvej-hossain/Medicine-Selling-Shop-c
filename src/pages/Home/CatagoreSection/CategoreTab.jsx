@@ -25,7 +25,7 @@ const CategoreTab = () => {
         <thead>
           <tr className="bg-gray-200">
             <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">Type</th>
+            <th className="px-4 py-2">Qunti</th>
             <th className="px-4 py-2">Price</th>
             <th className="px-4 py-2">#</th>
           </tr>

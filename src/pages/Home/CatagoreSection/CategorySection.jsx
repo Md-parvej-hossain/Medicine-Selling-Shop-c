@@ -1,20 +1,25 @@
-import CatagoreCart from './CatagoreCart';
+import { useEffect, useState } from 'react';
+import CatagoreCart1 from './CatagoreCart1';
+import useAxous from '../../../hooks/useAxous';
 
 const CategorySection = () => {
+  const [items, setItems] = useState([]);
+  const axiosPulic = useAxous();
+  useEffect(() => {
+    userData();
+  }, []);
+  const userData = async () => {
+    await axiosPulic.get('/medicen').then(res => {
+      setItems(res.data);
+    });
+  };
+  console.log(items);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-      {/* {categories.map(category => (
-        <CatagoreCart
-          key={category.id}
-          category={category}
-         
-        />
-      ))} */}
-      <CatagoreCart />
-      <CatagoreCart />
-      <CatagoreCart />
-      <CatagoreCart />
-      <CatagoreCart />
+      {items.map(iten => (
+        <CatagoreCart1 key={iten.id} iten={iten} />
+      ))}
     </div>
   );
 };

@@ -10,6 +10,9 @@ import Shop from '../pages/Shop/Shop';
 import ManageUser from '../pages/Dashboard/Admin/ManageUser';
 import ManageCategore from '../pages/Dashboard/Admin/ManageCategore';
 
+import ManageMedices from '../pages/Dashboard/Seller/ManageMedices';
+import AddMedsin from '../pages/Dashboard/Seller/AddMedsin';
+
 // import InvoicePage from '../pages/Invoicepage/InvoicePage';
 export const router = createBrowserRouter([
   {
@@ -32,10 +35,6 @@ export const router = createBrowserRouter([
         path: '/shop',
         element: <Shop />,
       },
-      // {
-      //   path: '/invoicepage',
-      //   element: <InvoicePage />,
-      // },
     ],
   },
   {
@@ -58,6 +57,14 @@ export const router = createBrowserRouter([
       {
         path: 'manageCategore',
         element: <ManageCategore />,
+      },
+      {
+        path: 'manageMedicin',
+        element: <ManageMedices />,
+      },
+      {
+        path: 'addmedicen',
+        element: <AddMedsin />,
       },
     ],
   },
