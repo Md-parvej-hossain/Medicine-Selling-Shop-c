@@ -9,7 +9,11 @@ const CatagoreCart1 = ({ item }) => {
     <Link to={`/category/${category}`}>
       <div className="card bg-base-100  shadow-xl hover:scale-110 transition">
         <figure className="px-10 pt-10">
-          <img src={img} alt="madicen img" className="rounded-xl" />
+          <img
+            src={img}
+            alt="madicen img"
+            className="rounded-xl object-cover h-[190px] w-[266px]"
+          />
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title ">

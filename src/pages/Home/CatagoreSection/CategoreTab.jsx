@@ -41,11 +41,12 @@ const CategoreTab = () => {
       };
       axiosSecure.post('/cart', cartItem).then(res => {
         console.log(res.data);
+         refetch();
         if (res.data.insertedId) {
           toast.success('Add to cart Success !');
         }
       });
-      refetch();
+     
     } else {
       Swal.fire({
         title: 'You are not Log In',

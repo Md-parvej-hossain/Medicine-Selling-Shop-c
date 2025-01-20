@@ -14,12 +14,16 @@ const CategorySection = () => {
     });
   };
 
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-      {items.map(iten => (
-        <CatagoreCart1 key={iten.id} item={iten} />
-      ))}
+    <div>
+      <div className="text-center text-gray-500">
+        <h1 className="text-4xl font-bold">Your Medicine Box</h1>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+        {items.map(iten => (
+          <CatagoreCart1 key={iten.id} item={iten} />
+        ))}
+      </div>
     </div>
   );
 };

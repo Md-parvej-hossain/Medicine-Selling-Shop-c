@@ -8,7 +8,6 @@ const Language = () => {
 
   const handleSelect = language => {
     setSelectedLanguage(language);
-    console.log(`Selected Language: ${language}`);
   };
 
   return (

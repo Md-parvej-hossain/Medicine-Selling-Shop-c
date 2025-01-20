@@ -1,9 +1,25 @@
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 
 const ManageMedices = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+
+  const {
+    data: seler = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['seler', user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/mediceen/${user?.email}`);
+      return data;
+    },
+  });
+  console.log(seler);
   const handleRemoveItem = id => {
     Swal.fire({
       title: 'Are you sure?',
@@ -15,7 +31,8 @@ const ManageMedices = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/cart/${id}`).then(res => {
+        axiosSecure.delete(`/medicen/${id}`).then(res => {
+          refetch();
           if (res.data.deletedCount > 0) {
             toast.success('Item Remove Success !');
           }
@@ -42,15 +59,22 @@ const ManageMedices = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="bg-base-200">
-              <th></th>
-              <td>Cy Ganderton</td>
-              <td>Price</td>
-              <td>Quality Control Specialist</td>
-              <td>Update</td>
-              <td onClick={() => handleRemoveItem()}>Deleat</td>
-            </tr>
+          <tbody className="">
+            {seler.map((data, index) => (
+              <tr key={data._id} className=" border-2">
+                <th>{index + 1}</th>
+                <td>{data.madicenName}</td>
+                <td>$ {data.price}</td>
+                <td>{data.quantity} P</td>
+                <td>Update</td>
+                <td
+                  className="btn my-2"
+                  onClick={() => handleRemoveItem(data._id)}
+                >
+                  Deleat
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

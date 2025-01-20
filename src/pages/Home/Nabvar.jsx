@@ -25,7 +25,7 @@ const Nvbar = () => {
         <NavLink to={'/shop'}>Shop</NavLink>
       </li>
       <li>
-        <NavLink to={'/j'}>Join Us</NavLink>
+        <NavLink to={'/login'}>Join Us</NavLink>
       </li>
       <li>
         <NavLink to={'/contact'}>Contact</NavLink>
