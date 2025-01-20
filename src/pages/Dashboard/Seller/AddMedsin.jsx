@@ -9,7 +9,6 @@ const AddMedsin = () => {
   const navigate = useNavigate();
   const axiousSequre = useAxous();
   const handleSubmit = async e => {
-    console.log(e);
     e.preventDefault();
     const form = e.target;
     const image = form.image.files[0];
@@ -19,7 +18,6 @@ const AddMedsin = () => {
     const description = form.description.value;
     const price = parseFloat(form.price.value);
     const quantity = parseFloat(form.quantity.value);
-    console.log(price,quantity);
     const seller = {
       name: user?.displayName,
       image: user?.photoURL,
@@ -56,6 +54,7 @@ const AddMedsin = () => {
                 className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                 name="name"
                 id="name"
+               
                 type="text"
                 placeholder=" Medicine name "
                 required

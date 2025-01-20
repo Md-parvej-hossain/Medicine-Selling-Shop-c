@@ -12,7 +12,7 @@ const ManageUser = () => {
       setUser(res.data);
     });
   };
-  console.log(users);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -22,8 +22,9 @@ const ManageUser = () => {
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Name</th>
+
               <th>Emale</th>
+              <th>status</th>
               <th>Role</th>
               <th>Action</th>
             </tr>
@@ -31,7 +32,7 @@ const ManageUser = () => {
           <tbody>
             {users.map((user, index) => (
               <tr key={user._id}>
-                <th>{index + 1}</th>
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -44,12 +45,11 @@ const ManageUser = () => {
                     </div>
                   </div>
                 </td>
-                <td>{user.name}</td>
                 <td>{user.email}</td>
-
+                <td>satatus</td>
                 <td>{user.role}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button className="btn btn-ghost btn-xs">Update Role</button>
                 </th>
               </tr>
             ))}

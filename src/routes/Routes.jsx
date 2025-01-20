@@ -9,9 +9,12 @@ import DahboardLayout from '../layouts/DahboardLayout';
 import Shop from '../pages/Shop/Shop';
 import ManageUser from '../pages/Dashboard/Admin/ManageUser';
 import ManageCategore from '../pages/Dashboard/Admin/ManageCategore';
-
 import ManageMedices from '../pages/Dashboard/Seller/ManageMedices';
 import AddMedsin from '../pages/Dashboard/Seller/AddMedsin';
+import Update from '../pages/Dashboard/Admin/Update';
+import Payment from '../pages/Dashboard/Customer/Payment';
+import Contact from '../components/Contact';
+import About from '../components/About';
 
 // import InvoicePage from '../pages/Invoicepage/InvoicePage';
 export const router = createBrowserRouter([
@@ -27,13 +30,18 @@ export const router = createBrowserRouter([
         path: '/category/:category',
         element: <CategoreTab />,
       },
-      {
-        path: '/addtocart',
-        element: <AddtoCart />,
-      },
+
       {
         path: '/shop',
         element: <Shop />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
+      },
+      {
+        path: '/about',
+        element: <About />,
       },
     ],
   },
@@ -55,12 +63,27 @@ export const router = createBrowserRouter([
         element: <ManageUser />,
       },
       {
-        path: 'manageCategore',
+        path: '/dashbors/addtocart',
+        element: <AddtoCart />,
+      },
+
+      {
+        index: true,
         element: <ManageCategore />,
       },
       {
         path: 'manageMedicin',
         element: <ManageMedices />,
+      },
+      {
+        path: 'payment',
+        element: <Payment />,
+      },
+      {
+        path: 'update/:id',
+        element: <Update />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/medicen/${params.id}`),
       },
       {
         path: 'addmedicen',

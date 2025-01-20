@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from './useAxiosSecure';
 import useAuth from './useAuth';
 
-const useCart = () => {
+const useSelerItem = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { refetch, data: cart = [] } = useQuery({
@@ -15,4 +15,4 @@ const useCart = () => {
   return [cart, refetch];
 };
 
-export default useCart;
+export default useSelerItem;

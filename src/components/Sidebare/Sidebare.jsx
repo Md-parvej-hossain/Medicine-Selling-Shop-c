@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink,  } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Sidebare = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,11 @@ const Sidebare = () => {
         <div className="p-6 text-lg font-bold mt-50">Dashboard</div>
         <ul className="menu p-4 space-y-2">
           <li>
-            <NavLink to={'/'} href="#manage-users" className="hover:bg-blue-700">
+            <NavLink
+              to={'/'}
+              href="#manage-users"
+              className="hover:bg-blue-700"
+            >
               Home
             </NavLink>
           </li>
@@ -25,12 +29,17 @@ const Sidebare = () => {
             </NavLink>
           </li>
           <li>
+            <Link href="#manage-category" className="hover:bg-blue-700">
+              Manage Category
+            </Link>
+          </li>
+          <li>
             <NavLink
-              to={'manageCategore'}
+              to={'addtocart'}
               href="#manage-category"
               className="hover:bg-blue-700"
             >
-              Manage Category
+              My Cart
             </NavLink>
           </li>
           <li>

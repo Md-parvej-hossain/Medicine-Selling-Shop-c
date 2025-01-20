@@ -9,7 +9,7 @@ import useCart from '../../hooks/useCart';
 const Nvbar = () => {
   const { user, logout } = useAuth();
   const [cart] = useCart();
-  console.log(cart);
+
   const handaleLogout = () => {
     logout()
       .then(() => {})
@@ -28,10 +28,10 @@ const Nvbar = () => {
         <NavLink to={'/j'}>Join Us</NavLink>
       </li>
       <li>
-        <NavLink to={'/c'}>Contact</NavLink>
+        <NavLink to={'/contact'}>Contact</NavLink>
       </li>
       <li>
-        <NavLink to={'/a'}>About Us</NavLink>
+        <NavLink to={'/about'}>About Us</NavLink>
       </li>
       <li>
         <NavLink to={'/invoicepage'}>Invoice page</NavLink>
@@ -62,7 +62,7 @@ const Nvbar = () => {
     </>
   );
   return (
-    <div>
+    <div className="">
       <div className="navbar bg-base-100 fixed z-10 glass">
         <div className="navbar-start">
           <div className="dropdown">
@@ -115,7 +115,7 @@ const Nvbar = () => {
                   role="button"
                   className="btn btn-ghost btn-circle"
                 >
-                  <Link to={'/addtocart'} className="indicator">
+                  <Link to={'/dashbors/addtocart'} className="indicator">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-7 w-7"

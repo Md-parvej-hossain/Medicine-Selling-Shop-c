@@ -28,7 +28,6 @@ const Shop = () => {
       setItems(res.data);
     });
   };
-  console.log(items);
 
   const handleViewDetails = medicine => {
     setSelectedMedicine(medicine);
@@ -44,6 +43,8 @@ const Shop = () => {
         price: parseFloat(item.price),
         quantity: parseFloat(item.quantity),
         img: item.img,
+        seller: item.seller.email,
+        description: item.description,
       };
       axiosSecure.post('/cart', cartItem).then(res => {
         console.log(res.data);

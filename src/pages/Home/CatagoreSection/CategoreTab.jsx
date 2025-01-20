@@ -25,8 +25,8 @@ const CategoreTab = () => {
       .then(data => setMedicines(data))
       .catch(error => console.error('Error fetching data:', error));
   }, [category]);
-
   const handaleAddToCart = item => {
+    console.log(item);
     if (user && user?.email) {
       const cartItem = {
         caetId: item._id,
@@ -36,6 +36,8 @@ const CategoreTab = () => {
         price: parseFloat(item.price),
         quantity: parseFloat(item.quantity),
         img: item.img,
+        seller: item.seller.email,
+        description: item.description,
       };
       axiosSecure.post('/cart', cartItem).then(res => {
         console.log(res.data);
@@ -82,7 +84,6 @@ const CategoreTab = () => {
             <tr key={data._id}>
               <td className="border px-4 py-2">{data.madicenName}</td>
               <td className="border px-4 py-2">{data.category}</td>
-
               <td className="border px-4 py-2">{data.quantity}</td>
               <td className="border px-4 py-2">${data.price}</td>
               <td className="border px-4 py-2">

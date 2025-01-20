@@ -1,5 +1,39 @@
+// import { useEffect, useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
+// import useAxous from '../../../hooks/useAxous';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useItem from '../../../hooks/useItem';
+import { Link } from 'react-router-dom';
 const ManageCategore = () => {
+  // const [items, setItems] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  // const axiosPulic = useAxous();
+  const [allData, loading, refetch] = useItem();
+
+  const handleRemoveItem = id => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/medicen/${id}`).then(res => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success('Item Remove Success !');
+          }
+        });
+      }
+    });
+  };
+  if (loading) return <h1>Loading...</h1>;
+
   return (
     <div>
       <div className="flex items-center justify-between p-5 ">
@@ -15,35 +49,38 @@ const ManageCategore = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
-              <th></th>
+            <tr className="text-center">
+              <th>#</th>
+              <th>Img</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Catagore</th>
+              <th>Price</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr className="bg-base-200">
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-            {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+            {allData.map((item, index) => (
+              <tr key={item._id} className="bg-base-200">
+                <th>{index + 1}</th>
+                <td>
+                  <img height={'50px'} width={'50px'} src={item.img} alt="" />
+                </td>
+                <td>{item.madicenName}</td>
+                <td>{item.category}</td>
+                <td>{item.price}</td>
+                <div className="flex items-center justify-center gap-8">
+                  <button
+                    onClick={() => handleRemoveItem(item._id)}
+                    className="btn btn-ghost"
+                  >
+                    Deleat
+                  </button>
+                  <Link to={`/dashbors/update/${item._id}`}>
+                    <button className="btn btn-ghost">Updata</button>
+                  </Link>
+                </div>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
