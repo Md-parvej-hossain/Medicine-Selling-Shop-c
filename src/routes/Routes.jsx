@@ -15,6 +15,9 @@ import Update from '../pages/Dashboard/Admin/Update';
 import Payment from '../pages/Dashboard/Customer/Payment';
 import Contact from '../components/Contact';
 import About from '../components/About';
+import BecameaSeller from '../pages/Dashboard/Seller/BecameaSeller';
+import Profile from '../components/Profile';
+import PrivateRoute from './PrivateRoute';
 
 // import InvoicePage from '../pages/Invoicepage/InvoicePage';
 export const router = createBrowserRouter([
@@ -64,11 +67,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashbors/addtocart',
-        element: <AddtoCart />,
+        element: (
+          <PrivateRoute>
+            <AddtoCart />
+          </PrivateRoute>
+        ),
       },
 
       {
-        index: true,
+        path: 'manageCategore',
         element: <ManageCategore />,
       },
       {
@@ -80,6 +87,10 @@ export const router = createBrowserRouter([
         element: <Payment />,
       },
       {
+        path: 'become-seller',
+        element: <BecameaSeller />,
+      },
+      {
         path: 'update/:id',
         element: <Update />,
         loader: ({ params }) =>
@@ -88,6 +99,10 @@ export const router = createBrowserRouter([
       {
         path: 'addmedicen',
         element: <AddMedsin />,
+      },
+      {
+        index: true,
+        element: <Profile />,
       },
     ],
   },

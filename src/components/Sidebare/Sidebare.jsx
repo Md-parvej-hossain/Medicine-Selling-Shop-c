@@ -1,9 +1,26 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import useRole from '../../hooks/useRole';
+import { CgProfile } from 'react-icons/cg';
+import { RiLogoutCircleLine } from 'react-icons/ri';
+import { IoHomeOutline } from 'react-icons/io5';
+import { GrUserManager } from 'react-icons/gr';
+import { TbCategory } from 'react-icons/tb';
+import { MdOutlinePayment } from 'react-icons/md';
+import { FcSalesPerformance } from 'react-icons/fc';
+import { PiFlagBanner } from 'react-icons/pi';
+import { FaCartPlus } from 'react-icons/fa';
+import { MdRequestPage } from 'react-icons/md';
+import { MdManageAccounts } from 'react-icons/md';
+import { MdOutlineHistory } from 'react-icons/md';
+import { RiAdvertisementLine } from 'react-icons/ri';
+import { MdAddCard } from 'react-icons/md';
 
 const Sidebare = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [role, isLoading] = useRole();
 
+  console.log(role);
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -18,73 +35,136 @@ const Sidebare = () => {
             <NavLink
               to={'/'}
               href="#manage-users"
-              className="hover:bg-blue-700"
+              className="hover:bg-blue-700 flex items-center gap-2"
             >
-              Home
+              <IoHomeOutline /> Home
             </NavLink>
           </li>
-          <li>
-            <NavLink to={'manageusrt'} className="hover:bg-blue-700">
-              Manage Users
-            </NavLink>
-          </li>
-          <li>
-            <Link href="#manage-category" className="hover:bg-blue-700">
-              Manage Category
-            </Link>
-          </li>
-          <li>
-            <NavLink
-              to={'addtocart'}
-              href="#manage-category"
-              className="hover:bg-blue-700"
-            >
-              My Cart
-            </NavLink>
-          </li>
-          <li>
-            <a href="#payment-management" className="hover:bg-blue-700">
-              Payment Management
-            </a>
-          </li>
-          <li>
-            <a href="#sales-report" className="hover:bg-blue-700">
-              Sales Report
-            </a>
-          </li>
-          <li>
-            <a href="#manage-banner" className="hover:bg-blue-700">
-              Manage Banner Advertise
-            </a>
-          </li>
-          <li>
-            <NavLink
-              to="manageMedicin"
-              href="#manage-medicines"
-              className="hover:bg-blue-700"
-            >
-              Manage Medicines
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="addmedicen"
-              href="#manage-medicines"
-              className="hover:bg-blue-700"
-            >
-              Add Medicines
-            </NavLink>
-          </li>
-          <li>
-            <a href="#payment-history" className="hover:bg-blue-700">
-              Payment History
-            </a>
-          </li>
-          <li>
-            <a href="#ask-advertisement" className="hover:bg-blue-700">
-              Ask For Advertisement
-            </a>
-          </li>
+
+          {role === 'customer' && (
+            <div>
+              <li>
+                <NavLink
+                  to={'become-seller'}
+                  href="#manage-category"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdRequestPage /> Become A Seller!
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={'addtocart'}
+                  href="#manage-category"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <FaCartPlus /> My Cart
+                </NavLink>
+              </li>
+            </div>
+          )}
+
+          {role === 'seller' && (
+            <div>
+              <li>
+                <NavLink
+                  to="manageMedicin"
+                  href="#manage-medicines"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdManageAccounts /> Manage Medicines
+                </NavLink>
+              </li>
+              <li>
+                <a
+                  href="#payment-history"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdOutlineHistory /> Payment History
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#ask-advertisement"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <RiAdvertisementLine /> Ask For Advertisement
+                </a>
+              </li>
+              <li>
+                <NavLink
+                  to="addmedicen"
+                  href="#manage-medicines"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdAddCard /> Add Medicines
+                </NavLink>
+              </li>
+            </div>
+          )}
+          {role === 'admin' && (
+            <div>
+              <li>
+                <NavLink
+                  to={'manageusrt'}
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <GrUserManager /> Manage Users
+                </NavLink>
+              </li>
+              <li>
+                <Link
+                  to={'manageCategore'}
+                  href="#manage-category"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <TbCategory /> Manage Category
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#payment-management"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdOutlinePayment /> Payment Management
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#sales-report"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <FcSalesPerformance /> Sales Report
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#manage-banner"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <PiFlagBanner /> Manage Banner Advertise
+                </a>
+              </li>
+            </div>
+          )}
+          <div className="">
+            <li className="border-t-2 border-gray-500 ">
+              <Link className="mt-20 hover:bg-blue-700">
+                <a
+                  href="#sales-report"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <CgProfile /> Profile
+                </a>
+              </Link>
+            </li>
+
+            <li>
+              <a href="#sales-report" className="hover:bg-blue-700 ">
+                <RiLogoutCircleLine /> Logout
+              </a>
+            </li>
+          </div>
         </ul>
       </div>
 
