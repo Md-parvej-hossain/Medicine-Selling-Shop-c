@@ -15,12 +15,16 @@ import { MdManageAccounts } from 'react-icons/md';
 import { MdOutlineHistory } from 'react-icons/md';
 import { RiAdvertisementLine } from 'react-icons/ri';
 import { MdAddCard } from 'react-icons/md';
+import useAuth from '../../hooks/useAuth';
 
 const Sidebare = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, isLoading] = useRole();
-
-  console.log(role);
+  const { user, logout } = useAuth();
+  const handalelogout = () => {
+    logout();
+    
+  };
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
@@ -60,6 +64,14 @@ const Sidebare = () => {
                 >
                   <FaCartPlus /> My Cart
                 </NavLink>
+              </li>
+              <li>
+                <a
+                  href="#payment-history"
+                  className="hover:bg-blue-700 flex items-center gap-2"
+                >
+                  <MdOutlineHistory /> Payment History
+                </a>
               </li>
             </div>
           )}
@@ -160,7 +172,11 @@ const Sidebare = () => {
             </li>
 
             <li>
-              <a href="#sales-report" className="hover:bg-blue-700 ">
+              <a
+                onClick={handalelogout}
+                href="#sales-report"
+                className="hover:bg-blue-700 "
+              >
                 <RiLogoutCircleLine /> Logout
               </a>
             </li>

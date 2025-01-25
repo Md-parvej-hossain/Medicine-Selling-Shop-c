@@ -18,6 +18,8 @@ import About from '../components/About';
 import BecameaSeller from '../pages/Dashboard/Seller/BecameaSeller';
 import Profile from '../components/Profile';
 import PrivateRoute from './PrivateRoute';
+import SellerRoute from './SellerRoute';
+import AdmineRoute from './AdmineRoute';
 
 // import InvoicePage from '../pages/Invoicepage/InvoicePage';
 export const router = createBrowserRouter([
@@ -63,7 +65,13 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'manageusrt',
-        element: <ManageUser />,
+        element: (
+          <PrivateRoute>
+            <AdmineRoute>
+              <ManageUser />
+            </AdmineRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/dashbors/addtocart',
@@ -76,19 +84,39 @@ export const router = createBrowserRouter([
 
       {
         path: 'manageCategore',
-        element: <ManageCategore />,
+        element: (
+          <PrivateRoute>
+            <AdmineRoute>
+              <ManageCategore />
+            </AdmineRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'manageMedicin',
-        element: <ManageMedices />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <ManageMedices />
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'payment',
-        element: <Payment />,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'become-seller',
-        element: <BecameaSeller />,
+        element: (
+          <PrivateRoute>
+            <BecameaSeller />
+          </PrivateRoute>
+        ),
       },
       {
         path: 'update/:id',
@@ -98,11 +126,22 @@ export const router = createBrowserRouter([
       },
       {
         path: 'addmedicen',
-        element: <AddMedsin />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <AddMedsin />
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
+
       {
         index: true,
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
