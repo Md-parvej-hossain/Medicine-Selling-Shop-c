@@ -19,7 +19,6 @@ const CatagoreCart1 = ({ item }) => {
           <h2 className="card-title ">
             Category :<span className="uppercase">{category}</span>{' '}
           </h2>
-          <p>{description}</p>
           <p>quantity : {quantity}</p>
           <div className="card-actions">
             <button className="btn btn-primary">view more </button>

@@ -46,7 +46,7 @@ const ManageUser = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-                <td>satatus</td>
+                <td>{user.status ? user.status : <p>undifin</p>}</td>
                 <td>{user.role}</td>
                 <th>
                   <button className="btn btn-ghost btn-xs">Update Role</button>

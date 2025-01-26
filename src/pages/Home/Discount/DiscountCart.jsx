@@ -3,7 +3,7 @@ const DiscountCart = () => {
     <div>
       <div className="card bg-base-100  shadow-xl">
         <figure>
-          <img src="https://i.ibb.co.com/xHymPZk/img-12.jpg" alt="Shoes" />
+          <img src="https://i.ibb.co.com/h1dKJCj/img-21.jpg" alt="Shoes" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">Medicine</h2>

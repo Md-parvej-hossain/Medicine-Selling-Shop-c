@@ -12,7 +12,7 @@ const ProductCard = () => {
         {/* Product Image */}
         <div className="flex justify-center">
           <img
-            src="https://i.ibb.co.com/t3f3XwZ/img-8.jpg" // Replace with actual product image URL
+            src="https://i.ibb.co.com/q9S3nBH/img-29.jpg" // Replace with actual product image URL
             alt="Product"
             className="h-36 object-contain"
           />
@@ -57,7 +57,7 @@ const ProductCard = () => {
         {/* Product Image */}
         <div className="flex justify-center">
           <img
-            src="https://i.ibb.co.com/0ZyptYX/img-19.jpg" // Replace with actual product image URL
+            src="https://i.ibb.co.com/dkVHS3Q/img-30.jpg" // Replace with actual product image URL
             alt="Product"
             className="h-36 object-contain"
           />
@@ -102,7 +102,7 @@ const ProductCard = () => {
         {/* Product Image */}
         <div className="flex justify-center">
           <img
-            src="https://i.ibb.co.com/VWf5yHq/img-23.jpg" // Replace with actual product image URL
+            src="https://i.ibb.co.com/1KFxmtR/img-14.jpg" // Replace with actual product image URL
             alt="Product"
             className="h-36 object-contain"
           />
