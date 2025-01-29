@@ -26,7 +26,6 @@ const CategoreTab = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, [category]);
   const handaleAddToCart = item => {
-    console.log(item);
     if (user && user?.email) {
       const cartItem = {
         caetId: item._id,
@@ -40,7 +39,6 @@ const CategoreTab = () => {
         description: item.description,
       };
       axiosSecure.post('/cart', cartItem).then(res => {
-        console.log(res.data);
          refetch();
         if (res.data.insertedId) {
           toast.success('Add to cart Success !');

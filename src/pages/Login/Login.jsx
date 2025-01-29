@@ -15,14 +15,12 @@ const Login = () => {
   // Google Signin
   const handleGoogleSignIn = () => {
     signInWithGoogle().then(result => {
-      console.log(result.user);
       const userInfo = {
         email: result.user?.email,
         name: result.user?.displayName,
         image: result.user?.photoURL,
       };
       axiosePublic.post('/users', userInfo).then(res => {
-        console.log(res.data);
         navigate(from, { replace: true });
       });
     });
@@ -34,7 +32,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
     signIn(email, password).then(res => {
       const user = res.user;
       console.log(user);

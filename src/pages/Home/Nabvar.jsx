@@ -34,7 +34,7 @@ const Nvbar = () => {
         <NavLink to={'/about'}>About Us</NavLink>
       </li>
       <li>
-        <NavLink to={'/invoicepage'}>Invoice page</NavLink>
+        <NavLink to={'/invobepage'}>Invoice page</NavLink>
       </li>
     </>
   );

@@ -50,7 +50,6 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
-      console.log('current user --------->', currentUser);
       setUser(currentUser);
       // //user info in databas
       // if (currentUser?.user) {

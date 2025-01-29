@@ -23,7 +23,6 @@ const Sidebare = () => {
   const { user, logout } = useAuth();
   const handalelogout = () => {
     logout();
-    
   };
   return (
     <div className="flex h-screen">
@@ -66,12 +65,12 @@ const Sidebare = () => {
                 </NavLink>
               </li>
               <li>
-                <a
-                  href="#payment-history"
+                <NavLink
+                  to={'paymenthistory'}
                   className="hover:bg-blue-700 flex items-center gap-2"
                 >
                   <MdOutlineHistory /> Payment History
-                </a>
+                </NavLink>
               </li>
             </div>
           )}
@@ -88,20 +87,21 @@ const Sidebare = () => {
                 </NavLink>
               </li>
               <li>
-                <a
-                  href="#payment-history"
+                <NavLink
+                  to={'paymenthistory'}
                   className="hover:bg-blue-700 flex items-center gap-2"
                 >
                   <MdOutlineHistory /> Payment History
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
+                  to={'advertisementSection'}
                   href="#ask-advertisement"
                   className="hover:bg-blue-700 flex items-center gap-2"
                 >
                   <RiAdvertisementLine /> Ask For Advertisement
-                </a>
+                </NavLink>
               </li>
               <li>
                 <NavLink
@@ -134,12 +134,12 @@ const Sidebare = () => {
                 </Link>
               </li>
               <li>
-                <a
+                <NavLink to={"paymentManagement"}
                   href="#payment-management"
                   className="hover:bg-blue-700 flex items-center gap-2"
                 >
                   <MdOutlinePayment /> Payment Management
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a

@@ -19,7 +19,6 @@ const ManageMedices = () => {
       return data;
     },
   });
-  console.log(seler);
   const handleRemoveItem = id => {
     Swal.fire({
       title: 'Are you sure?',

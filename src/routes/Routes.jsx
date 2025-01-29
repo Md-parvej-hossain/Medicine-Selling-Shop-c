@@ -20,6 +20,10 @@ import Profile from '../components/Profile';
 import PrivateRoute from './PrivateRoute';
 import SellerRoute from './SellerRoute';
 import AdmineRoute from './AdmineRoute';
+import Invobe from '../components/Invobe';
+import PaymentHistory from '../components/PaymentHistory';
+import AdvertisementSection from '../components/AdvertisementSection';
+import PaymentManagement from '../pages/Dashboard/Admin/PaymentManagement';
 
 // import InvoicePage from '../pages/Invoicepage/InvoicePage';
 export const router = createBrowserRouter([
@@ -47,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+      {
+        path: '/invobepage',
+        element: <Invobe />,
       },
     ],
   },
@@ -131,6 +139,30 @@ export const router = createBrowserRouter([
             <SellerRoute>
               <AddMedsin />
             </SellerRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'paymenthistory',
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'advertisementSection',
+        element: (
+          <PrivateRoute>
+            <AdvertisementSection />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'paymentManagement',
+        element: (
+          <PrivateRoute>
+            <PaymentManagement />
           </PrivateRoute>
         ),
       },

@@ -47,7 +47,6 @@ const Shop = () => {
         description: item.description,
       };
       axiosSecure.post('/cart', cartItem).then(res => {
-        console.log(res.data);
         if (res.data.insertedId) {
           toast.success('Add to cart Success !');
         }
