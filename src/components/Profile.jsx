@@ -1,4 +1,4 @@
-import img from '../assets/download1.jpg';
+// import img from '../assets/download1.jpg';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
@@ -13,7 +13,7 @@ const Profile = () => {
       <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
         <img
           alt="cover photo"
-          src={img}
+          src={''}
           className="w-full mb-4 rounded-t-lg h-56"
         />
         <div className="flex flex-col items-center justify-center p-4 -mt-16">

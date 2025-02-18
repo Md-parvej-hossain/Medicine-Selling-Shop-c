@@ -5,9 +5,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import img1 from '../../assets/download1.jpg';
-import img2 from '../../assets/download2.jpg';
-import img3 from '../../assets/download3.jpg';
+import photo1 from '../../assets/photo1.jpg';
+import photo2 from '../../assets/photo2.jpg';
+import photo3 from '../../assets/photo3.jpg';
+
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Slide from './Slide';
@@ -31,19 +32,19 @@ export default function Carosol() {
       >
         <SwiperSlide>
           <Slide
-            image={img1}
+            image={photo1}
             text="Get Your English Learning Course Done in minutes"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={img2}
+            image={photo2}
             text="Get Your French Learning Course Done in minutes"
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={img3}
+            image={photo3}
             text="Get Your Japanese Learning Course Done in minutes"
           />
         </SwiperSlide>

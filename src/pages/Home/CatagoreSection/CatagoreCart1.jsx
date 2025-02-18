@@ -7,12 +7,12 @@ const CatagoreCart1 = ({ item }) => {
 
   return (
     <Link to={`/category/${category}`}>
-      <div className="card bg-base-100  shadow-xl hover:scale-110 transition">
-        <figure className="px-10 pt-10">
+      <div className="card bg-base-100  shadow-xl group transition">
+        <figure className="px-5 pt-5">
           <img
             src={img}
             alt="madicen img"
-            className="rounded-xl object-cover h-[190px] w-[266px]"
+            className="rounded-xl object-cover h-[190px] w-[266px] group-hover:scale-110  transition"
           />
         </figure>
         <div className="card-body items-center text-center">
