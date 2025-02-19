@@ -19,22 +19,34 @@ const Nvbar = () => {
   const navlinks = (
     <>
       <li>
-        <NavLink to={'/'}>Home</NavLink>
+        <NavLink className="font-semibold " to={'/'}>
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={'/shop'}>Shop</NavLink>
+        <NavLink className="font-semibold " to={'/shop'}>
+          Shop
+        </NavLink>
       </li>
       <li>
-        <NavLink to={'/login'}>Join Us</NavLink>
+        <NavLink className="font-semibold " to={'/login'}>
+          Join Us
+        </NavLink>
       </li>
       <li>
-        <NavLink to={'/contact'}>Contact</NavLink>
+        <NavLink className="font-semibold " to={'/contact'}>
+          Contact
+        </NavLink>
       </li>
       <li>
-        <NavLink to={'/about'}>About Us</NavLink>
+        <NavLink className="font-semibold " to={'/about'}>
+          About Us
+        </NavLink>
       </li>
       <li>
-        <NavLink to={'/invobepage'}>Invoice page</NavLink>
+        <NavLink className="font-semibold " to={'/invobepage'}>
+          Invoice page
+        </NavLink>
       </li>
     </>
   );

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const CatagoreCart1 = ({ item }) => {
   const { category, description, img, madicenName, price, quantity } =
     item || '';
-  console.log();
 
   return (
     <Link to={`/category/${category}`}>
